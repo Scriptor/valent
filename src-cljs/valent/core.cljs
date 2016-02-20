@@ -7,17 +7,18 @@
 
 (declare root*)
 
-(defn by [k v data]
+(defn by
   "Given a collection of maps, returns exactly one map
    where the value at `key` matches `val`."
+  [k v data]
 
   (first (filter #(= (get % k) v) data)))
 
 (defn process-map
-  [qry state joins korks root-state]
   "Takes the current state map and selects out the desired
    keys, transforming with further subselectors when specified
   by the query."
+  [qry state joins korks root-state]
 
   (letfn [(process-kv [m k v]
             (let
@@ -40,9 +41,9 @@
     (reduce-kv process-kv (empty qry) qry)))
 
 (defn process-vector
-  [qry state joins korks root-state]
   "Takes the current state vector and returns a vector of the
    desired selectored data."
+  [qry state joins korks root-state]
 
   (let [subqry (first qry)
         korks' (conj korks 0)]
