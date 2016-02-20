@@ -59,5 +59,6 @@
     (process-vector qry state joins korks root-state)))
 
 (defn root
+  "Process root query with given state and joins"
   [qry state joins]
   (root* qry state joins [] state))
